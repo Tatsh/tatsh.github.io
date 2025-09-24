@@ -63,7 +63,7 @@
     }
   },
   "name": "tatsh",
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.10.2",
   "prettier": {
     "endOfLine": "lf",
     "iniSpaceAroundEquals": true,
