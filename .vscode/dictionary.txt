@@ -1,14 +1,14 @@
 bsky
-codeowners
 coveragerc
 docstrings
 esbenp
-htmlcov
+foxundermoon
 jsonnet
 jsonschema
+libera
 libjsonnet
-pycache
 schemafile
+shellformat
 tatsh
 udvare
 wiswa
