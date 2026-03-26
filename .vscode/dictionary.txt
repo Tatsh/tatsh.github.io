@@ -1,6 +1,5 @@
 bsky
 coveragerc
-dashcam
 docstrings
 esbenp
 foxundermoon
@@ -8,17 +7,9 @@ jsonnet
 jsonschema
 libera
 libsonnet
-mktemp
-oneline
-regen
 schemafile
-shellcheck
 shellformat
-snapcraft
 tatsh
 udvare
-vendored
-venv
 wiswa
 yarnrc
-ångström
