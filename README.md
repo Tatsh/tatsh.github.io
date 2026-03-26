@@ -5,8 +5,9 @@
 [![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/Tatsh/v0.0.0/master)](https://github.com/Tatsh/Tatsh/compare/v0.0.0...master)
 [![QA](https://github.com/Tatsh/Tatsh/actions/workflows/qa.yml/badge.svg)](https://github.com/Tatsh/Tatsh/actions/workflows/qa.yml)
 [![Dependabot](https://img.shields.io/badge/Dependabot-enabled-blue?logo=dependabot)](https://github.com/dependabot)
-[![GitHub Pages](https://github.com/Tatsh/Tatsh/badge/pages)](https://Tatsh.github.io/Tatsh/)
+[![GitHub Pages](https://github.com/Tatsh/Tatsh/actions/workflows/pages.yml/badge.svg)](https://tatsh.github.io/Tatsh/)
 [![Stargazers](https://img.shields.io/github/stars/Tatsh/Tatsh?logo=github&style=flat)](https://github.com/Tatsh/Tatsh/stargazers)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://pre-commit.com/)
 [![Prettier](https://img.shields.io/badge/Prettier-enabled-black?logo=prettier)](https://prettier.io/)
 
 [![@Tatsh](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fpublic.api.bsky.app%2Fxrpc%2Fapp.bsky.actor.getProfile%2F%3Factor=did%3Aplc%3Auq42idtvuccnmtl57nsucz72&query=%24.followersCount&label=Follow+%40Tatsh&logo=bluesky&style=social)](https://bsky.app/profile/Tatsh.bsky.social)
