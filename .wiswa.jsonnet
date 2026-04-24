@@ -9,5 +9,5 @@
   version: '0.0.0',
   description: 'Profile project.',
   keywords: ['github', 'profile', 'tatsh'],
-  want_main: false,
+  want_main: false
 }
