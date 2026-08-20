@@ -9,6 +9,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.0.2] - 2026-08-20
+
+### Added
+
+- Dark mode. The page follows the operating system by default, and a toolbar button cycles through
+  following the system, light, and dark. Choosing light or dark is remembered between visits. The
+  printed sheet stays light, whatever the screen is showing.
+
 ## [0.0.1] - 2026-08-20
 
 ### Added
@@ -30,5 +38,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - The placeholder page previously served at the site root.
 
-[unreleased]: https://github.com/Tatsh/tatsh.github.io/compare/v0.0.1...HEAD
+[unreleased]: https://github.com/Tatsh/tatsh.github.io/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/Tatsh/tatsh.github.io/releases/tag/v0.0.2
 [0.0.1]: https://github.com/Tatsh/tatsh.github.io/releases/tag/v0.0.1
