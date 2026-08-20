@@ -32,7 +32,7 @@ jobs:
 name: 'Pages'
 'on':
   push:
-    branches:
-      - 'master'
+    tags:
+      - 'v*'
 permissions:
   contents: 'read'
