@@ -107,5 +107,5 @@
     "dict:update": "rm -f .vscode/dictionary.txt && cspell lint --no-progress --no-summary --unique --words-only | tr '[:upper:]' '[:lower:]' | sort -u > .vscode/dictionary.txt",
     "format": "prettier --write . && markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2 --fix"
   },
-  "version": "0.0.0"
+  "version": "0.0.1"
 }

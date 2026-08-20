@@ -6,7 +6,7 @@
   want_claude: false,
   want_cursor: false,
   project_name: 'Tatsh',
-  version: '0.0.0',
+  version: '0.0.1',
   description: 'Profile project.',
   keywords: ['github', 'profile', 'tatsh'],
   want_main: false,

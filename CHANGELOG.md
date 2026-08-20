@@ -9,6 +9,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.0.1] - 2026-08-20
+
 ### Added
 
 - One-page résumé at the site root, laid out so that it prints to a single sheet on both US letter
@@ -28,9 +30,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - The placeholder page previously served at the site root.
 
-## [0.0.1] - 2025-00-00
-
-First version.
-
-[unreleased]: https://github.com/Tatsh/Tatsh/compare/v0.0.0...HEAD
-[0.0.1]: https://github.com/Tatsh/Tatsh/releases/tag/v0.0.0
+[unreleased]: https://github.com/Tatsh/tatsh.github.io/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/Tatsh/tatsh.github.io/releases/tag/v0.0.1
