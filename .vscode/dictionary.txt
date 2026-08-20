@@ -2,6 +2,7 @@
 asyncio
 bpmdetect
 bsky
+buymeacoffee
 checksec
 cmocka
 commitizen
