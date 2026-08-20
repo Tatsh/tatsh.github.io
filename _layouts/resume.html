@@ -117,10 +117,23 @@
             </section>
 
             <section class="mt-3" id="doc-meta">
+              {%- assign repo = site.github.repository_url
+                | default: 'https://github.com/Tatsh/tatsh.github.io' -%}
+              {%- if site.github.build_revision -%}
+              {%- assign commit_url = repo | append: '/commit/' | append: site.github.build_revision -%}
+              {%- else -%}
+              {%- assign commit_url = repo | append: '/commits' -%}
+              {%- endif -%}
               <p class="doc-meta mb-0">
-                Version {{ r.version }} &middot; last updated
-                <time datetime="{{ site.time | date: '%Y-%m-%d' }}"
-                  >{{ site.time | date: '%-d %B %Y' }}</time
+                Version
+                <a href="{{ repo }}/releases/tag/v{{ r.version }}" target="_blank" rel="noopener"
+                  >{{ r.version }}</a
+                >
+                &middot; last updated
+                <a href="{{ commit_url }}" target="_blank" rel="noopener">
+                  <time datetime="{{ site.time | date: '%Y-%m-%d' }}"
+                    >{{ site.time | date: '%-d %B %Y' }}</time
+                  ></a
                 >
               </p>
             </section>
