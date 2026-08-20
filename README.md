@@ -8,7 +8,7 @@
 [![Dependabot](https://img.shields.io/badge/Dependabot-enabled-blue?logo=dependabot)](https://github.com/dependabot)
 [![pages-build-deployment](https://github.com/Tatsh/Tatsh/actions/workflows/pages/pages-build-deployment/badge.svg)](https://tatsh.github.io/Tatsh/)
 [![Stargazers](https://img.shields.io/github/stars/Tatsh/Tatsh?logo=github&style=flat)](https://github.com/Tatsh/Tatsh/stargazers)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Tatsh/Tatsh/master.svg)](https://results.pre-commit.ci/latest/github/Tatsh/Tatsh/master)
 [![Prettier](https://img.shields.io/badge/Prettier-black?logo=prettier)](https://prettier.io/)
 
 [![@Tatsh](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fpublic.api.bsky.app%2Fxrpc%2Fapp.bsky.actor.getProfile%2F%3Factor=did%3Aplc%3Auq42idtvuccnmtl57nsucz72&query=%24.followersCount&label=Follow+%40Tatsh&logo=bluesky&style=social)](https://bsky.app/profile/Tatsh.bsky.social)

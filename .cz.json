@@ -7,8 +7,8 @@
       ".wiswa.jsonnet",
       "CITATION.cff",
       "README.md",
-      "_data/resume.yml",
-      "package.json"
+      "package.json",
+      "_data/resume.yml"
     ],
     "version_provider": "npm",
     "version_scheme": "semver"
