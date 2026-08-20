@@ -33,6 +33,20 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="{{ '/assets/css/resume.css' | relative_url }}" />
+    <script>
+      // Applied before first paint so a pinned theme does not flash the other
+      // one. 'auto' is the default and needs no attribute: CSS follows the OS.
+      try {
+        var t = window.localStorage.getItem('resume-theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+        var dark =
+          t === 'dark' ||
+          (t !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
+      } catch (e) {
+        /* Storage unavailable; fall back to following the OS. */
+      }
+    </script>
   </head>
 
   <body>

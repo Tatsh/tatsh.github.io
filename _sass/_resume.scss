@@ -76,20 +76,68 @@
 }
 
 :root {
-  --navy: #16324f;
-  --navy-deep: #0e2338;
+  /* Tokens are semantic rather than named after a colour, because the masthead
+     background and the heading text share one value in light mode but must
+     diverge in dark. */
+  --masthead-bg: #16324f;
+  --masthead-fg: #fff;
+  --masthead-link: #cfe0ef;
+  --masthead-muted: #a9c3d9;
+  --heading: #16324f;
   --accent: #2f6690;
   --accent-soft: #e7eef5;
   --rule: #d3dae3;
   --ink: #1a1d23;
   --muted: #56606e;
   --panel: #f2f5f9;
+  --sheet: #fff;
+  --page-bg: #e6e9ee;
+  --kbd-bg: #16324f;
+  --kbd-fg: #fff;
+  --on-accent: #fff;
+  --backdrop: 14, 35, 56;
+  --shadow: 0, 0, 0;
 
   /* Source Sans 3 throughout. Its moderate x-height keeps more words per
      line than Inter or Open Sans at the same size, which is what buys the
      printed sheet a full point of type over a wider family. */
   --font-body: 'Source Sans 3', 'Source Sans Fallback', 'Helvetica Neue', Arial, sans-serif;
   --font-head: var(--font-body);
+}
+
+/* Dark palette. Applied when the OS asks for dark and the reader has not
+   pinned light, or when they have pinned dark outright. Both selectors carry
+   the same specificity as each other and as the print override below, so
+   source order decides, and print comes last. */
+@mixin dark-tokens {
+  --masthead-bg: #0d1b28;
+  --masthead-fg: #e9f0f7;
+  --masthead-link: #9dc3e3;
+  --masthead-muted: #7f9cb5;
+  --heading: #9dc3e3;
+  --accent: #6cb0e8;
+  --accent-soft: #1b2a38;
+  --rule: #2b3440;
+  --ink: #dde5ed;
+  --muted: #98a5b3;
+  --panel: #161d25;
+  --sheet: #10161d;
+  --page-bg: #080b0f;
+  --kbd-bg: #6cb0e8;
+  --kbd-fg: #0d1b28;
+  --on-accent: #0d1b28;
+  --backdrop: 0, 0, 0;
+  --shadow: 0, 0, 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include dark-tokens;
+  }
+}
+
+:root[data-theme='dark'] {
+  @include dark-tokens;
 }
 
 /* Driven by the text-size controls. Deliberately a custom property rather
@@ -118,7 +166,7 @@ body {
 
 .resume {
   max-width: 8.5in;
-  background: #fff;
+  background: var(--sheet);
 }
 
 a {
@@ -128,13 +176,13 @@ a {
 /* ---------- Masthead band ---------- */
 
 .masthead {
-  background: var(--navy);
-  color: #fff;
+  background: var(--masthead-bg);
+  color: var(--masthead-fg);
   padding: 1.1rem 1.3rem;
 }
 
 .masthead a {
-  color: #cfe0ef;
+  color: var(--masthead-link);
   text-decoration: none;
 }
 
@@ -143,11 +191,11 @@ a {
   font-weight: 700;
   letter-spacing: 0.015em;
   line-height: 1;
-  color: #fff;
+  color: var(--masthead-fg);
 }
 
 .tagline {
-  color: #a9c3d9;
+  color: var(--masthead-muted);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-size: 0.8rem;
@@ -157,7 +205,7 @@ a {
 .contact {
   font-size: 0.9rem;
   line-height: 1.55;
-  color: #cfe0ef;
+  color: var(--masthead-link);
 }
 
 .body-pad {
@@ -172,7 +220,7 @@ a {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--heading);
   border-bottom: 1px solid var(--rule);
   padding: 0 0 0.2rem 0.6rem;
   margin-bottom: 0.5rem;
@@ -200,7 +248,7 @@ a {
 .job-title {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--heading);
 }
 
 .job-title .role {
@@ -210,7 +258,7 @@ a {
 
 .dates {
   font-size: 0.8rem;
-  color: var(--navy);
+  color: var(--heading);
   white-space: nowrap;
   background: var(--accent-soft);
   border-radius: 2px;
@@ -294,7 +342,7 @@ a {
 .proj-name,
 .up-name {
   font-weight: 700;
-  color: var(--navy);
+  color: var(--heading);
 }
 
 /* ---------- Toolbar ---------- */
@@ -321,8 +369,9 @@ a {
   border-radius: 6px;
   padding: 18px 21px 16px;
   font-size: 14px;
+  background: var(--sheet);
   color: var(--ink);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 40px rgba(var(--shadow), 0.3);
 }
 
 /* A dialog toggles display, which is not animatable on its own. Listing
@@ -348,11 +397,11 @@ a {
 }
 
 #help-dialog::backdrop {
-  background: rgba(14, 35, 56, 0);
+  background: rgba(var(--backdrop), 0);
 }
 
 #help-dialog[open]::backdrop {
-  background: rgba(14, 35, 56, 0.45);
+  background: rgba(var(--backdrop), 0.45);
 }
 
 @starting-style {
@@ -362,7 +411,7 @@ a {
   }
 
   #help-dialog[open]::backdrop {
-    background: rgba(14, 35, 56, 0);
+    background: rgba(var(--backdrop), 0);
   }
 }
 
@@ -382,7 +431,7 @@ a {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--heading);
   border-bottom: 1px solid var(--rule);
   padding-bottom: 5px;
   margin-bottom: 11px;
@@ -394,7 +443,7 @@ a {
 
 #help-dialog dt {
   font-weight: 700;
-  color: var(--navy);
+  color: var(--heading);
 }
 
 #help-dialog dd {
@@ -413,8 +462,8 @@ a {
   font-size: 0.82em;
   padding: 0.1em 0.4em;
   border-radius: 3px;
-  background: var(--navy);
-  color: #fff;
+  background: var(--kbd-bg);
+  color: var(--kbd-fg);
 }
 
 /* Pinned in pixels rather than rem so the text-size control resizes the
@@ -449,7 +498,7 @@ a {
 
 .expand-btn:hover,
 .expand-btn:focus-visible {
-  color: #fff;
+  color: var(--on-accent);
   background: var(--accent);
 }
 
@@ -487,13 +536,13 @@ a {
 
 @media screen {
   body {
-    background: #e6e9ee;
+    background: var(--page-bg);
   }
 
   /* An even 12px frame all round. Deliberately px rather than rem so the
      text-size control resizes the content, not the gap around it. */
   .resume {
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 2px 20px rgba(var(--shadow), 0.14);
     border-radius: 5px;
     overflow: hidden;
     margin: 12px auto;
@@ -571,6 +620,27 @@ a {
     margin: 0;
   }
 
+  /* The sheet is always light, whatever the screen is showing. Matches the
+     specificity of the dark selectors above and comes later, so it wins. */
+  :root,
+  :root[data-theme] {
+    --masthead-bg: #16324f;
+    --masthead-fg: #fff;
+    --masthead-link: #cfe0ef;
+    --masthead-muted: #a9c3d9;
+    --heading: #16324f;
+    --accent: #2f6690;
+    --accent-soft: #e7eef5;
+    --rule: #d3dae3;
+    --ink: #1a1d23;
+    --muted: #56606e;
+    --panel: #f2f5f9;
+    --sheet: #fff;
+    --kbd-bg: #16324f;
+    --kbd-fg: #fff;
+    --on-accent: #fff;
+  }
+
   body {
     background: #fff;
     line-height: 1.18;
@@ -584,7 +654,7 @@ a {
   }
 
   a {
-    color: var(--navy);
+    color: var(--heading);
     text-decoration: none;
   }
 

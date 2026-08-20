@@ -43,6 +43,68 @@
     }
   });
 
+  // Theme: auto follows the OS via prefers-color-scheme and needs no attribute;
+  // light and dark pin the choice. A pre-paint script in the document head
+  // applies a stored value before first render.
+  var THEMES = ['auto', 'light', 'dark'];
+  var THEME_ICONS = { auto: 'fa-circle-half-stroke', light: 'fa-sun', dark: 'fa-moon' };
+  var THEME_LABELS = {
+    auto: 'Theme: follow the system',
+    light: 'Theme: light',
+    dark: 'Theme: dark',
+  };
+  var THEME_KEY = 'resume-theme';
+  var themeBtn = document.getElementById('theme-toggle');
+  var themeIcon = document.getElementById('theme-icon');
+  var themeLabel = document.getElementById('theme-label');
+  var theme = 'auto';
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  // Bootstrap's own components read data-bs-theme, and it needs the resolved
+  // theme rather than 'auto', so it is tracked separately and updated when the
+  // OS preference changes.
+  function syncBootstrapTheme() {
+    var resolved = theme === 'auto' ? (darkQuery.matches ? 'dark' : 'light') : theme;
+    document.documentElement.setAttribute('data-bs-theme', resolved);
+  }
+
+  darkQuery.addEventListener('change', syncBootstrapTheme);
+
+  function applyTheme(next) {
+    theme = next;
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    syncBootstrapTheme();
+    THEMES.forEach(function (name) {
+      themeIcon.classList.toggle(THEME_ICONS[name], name === theme);
+    });
+    themeLabel.textContent = THEME_LABELS[theme];
+    themeBtn.setAttribute('title', THEME_LABELS[theme]);
+  }
+
+  try {
+    var storedTheme = window.localStorage.getItem(THEME_KEY);
+    if (THEMES.indexOf(storedTheme) !== -1) theme = storedTheme;
+  } catch (e) {
+    // Storage can be unavailable in private browsing.
+  }
+
+  applyTheme(theme);
+
+  themeBtn.addEventListener('click', function () {
+    applyTheme(THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length]);
+    try {
+      if (theme === 'auto') window.localStorage.removeItem(THEME_KEY);
+      else window.localStorage.setItem(THEME_KEY, theme);
+    } catch (e) {
+      // Ignore storage failures.
+    }
+  });
+
   // Landscape mode: let the sheet fill the window instead of sitting at
   // printed-page width.
   var resume = document.querySelector('.resume');
@@ -131,6 +193,7 @@
   // Function declarations hoist, so the applyX helpers below are already
   // bound by the time a gesture can fire.
   function resetAll() {
+    applyTheme('auto');
     twoColumn = true;
     apply(twoColumn);
     isWide = false;
@@ -141,6 +204,7 @@
       window.localStorage.removeItem(STORAGE_KEY);
       window.localStorage.removeItem(WIDTH_KEY);
       window.localStorage.removeItem(FONT_KEY);
+      window.localStorage.removeItem(THEME_KEY);
     } catch (e) {
       // Ignore storage failures.
     }
