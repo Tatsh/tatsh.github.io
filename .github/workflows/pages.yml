@@ -1,0 +1,38 @@
+concurrency:
+  cancel-in-progress: false
+  group: 'pages'
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1'
+        with:
+          persist-credentials: false
+      - id: 'pages'
+        uses: 'actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d'
+      - name: 'Build with Jekyll'
+        uses: 'actions/jekyll-build-pages@44a6e6beabd48582f863aeeb6cb2151cc1716697'
+        with:
+          destination: './_site'
+          source: './'
+      - name: 'Upload artifact'
+        uses: 'actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9'
+  deploy:
+    environment:
+      name: 'github-pages'
+      url: '${{ steps.deployment.outputs.page_url }}'
+    needs: 'build'
+    permissions:
+      id-token: 'write'
+      pages: 'write'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - id: 'deployment'
+        uses: 'actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128'
+name: 'Pages'
+'on':
+  push:
+    branches:
+      - 'master'
+permissions:
+  contents: 'read'
