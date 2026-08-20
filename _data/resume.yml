@@ -1,0 +1,294 @@
+# Resume content. Edit here; the templates render it.
+version: 0.0.0
+name: Andrew Udvare
+tagline: Senior Full-Stack Engineer
+contact:
+  - text: audvare@gmail.com
+    href: mailto:audvare@gmail.com
+  - text: Haines City, FL
+    href: https://www.google.com/maps/search/?api=1&query=Haines+City%2C+FL
+  - text: github.com/Tatsh
+    href: https://github.com/Tatsh
+summary: >-
+  Senior Full-Stack Engineer, 15 years, primarily Python and TypeScript, with systems and native application
+  work in C, C++, Qt, and Swift on iOS. I specialise in taking existing codebases from fragile to
+  maintainable: type coverage, test coverage, shared internal packages, and CI/CD that enforces both.
+  Maintainer of 84 active open-source projects with over 300 merged upstream contributions.
+experience:
+  - company: The Walt Disney Company
+    role: Senior Software Engineer
+    dates: Sept 2023 to Present
+    stack: >-
+      Python, Django, React, Next.js, TypeScript, Snowflake, PostgreSQL, Redis, Docker, AWS Lambda/S3,
+      GitLab CI/CD, Datadog
+    bullets:
+      - text: >-
+          Principal engineer on the linear and digital audience forecasting platforms that project episode-level
+          viewership across Disney's media networks, which drives advertising inventory decisions. Authored
+          roughly 2,100 of 8,300 commits on the core service.
+      - text: >-
+          Drove AI-assisted development: authored the agent instruction and skill files that ship with
+          the project template, so every repository inherits them, and built MCP servers exposing internal
+          tooling to coding agents. Worked daily using Claude Opus.
+      - text: >-
+          Led the migration of the forecasting data layer from PostgreSQL to Snowflake: key-pair authentication,
+          an identifier-casing migration behind a backwards-compatible view layer for existing consumers,
+          and a move off a forked database driver onto the official upstream one.
+      - text: >-
+          Designed and shipped roughly a dozen reusable internal Python packages on a private index: OIDC/SSO
+          auth, AWS Parameter Store configuration, middleware, health checks, Snowflake schema models,
+          and PEP 561 stubs. All fully typed, and they drove an audit that pushed infrastructure code
+          out of eight applications into shared libraries.
+      - text: >-
+          Built a package that deploys containerised Django and Next.js applications to AWS Lambda, turning
+          a bespoke per-project deployment into a dependency plus a CI job.
+        extra: true
+      - text: >-
+          Rebuilt the test strategy across services: replaced database-dependent tests with zero-database
+          integration tests, raised backend coverage from 51% to above 90% with enforced thresholds, and
+          reached 100% on several services. Migrated the frontend from Create React App to Vite and Vitest,
+          added the first frontend test suite at 92% line coverage, and moved it to TypeScript strict
+          mode.
+        extra: true
+      - text: >-
+          Owned CI/CD and tooling standards: consolidated projects onto shared GitLab CI templates, wrote
+          the code-quality report generators that surface Python formatter and linter output natively
+          in merge requests, and created the project template system that keeps every repository current
+          on dependencies, linting, typing, and testing configuration from a single update.
+        extra: true
+      - text: >-
+          Integrated Datadog APM tracing and RUM across the web applications, migrated caching to managed
+          Redis (ElastiCache cluster mode), and served as the go-to person for deployment, CI/CD, and
+          Python debugging across teams, mentoring junior developers.
+        extra: true
+  - company: RingCentral
+    role: Senior Software Engineer
+    dates: May 2020 to Aug 2023
+    stack: TypeScript, JavaScript, Node, React, PostgreSQL, AWS S3/RDS/CloudFront, GitLab CI
+    bullets:
+      - text: >-
+          Owned the company's Zapier integration end to end (over 540 commits), exposing telephony, messaging,
+          and meeting APIs to non-developers. Converted polling triggers such as call-ended and new-voicemail
+          into webhook-driven instant triggers, cutting latency and API load.
+      - text: >-
+          Built the integration's TypeScript functional-testing framework and the CI/CD around it: suites
+          triggered on private builds, coverage reported to GitLab Pages and InfluxDB, and automated release
+          promotion. Instrumented the product with Mixpanel and Segment analytics, and fixed OAuth token
+          lifetimes that were silently expiring connections.
+      - text: >-
+          Contributed to a new Microsoft Teams integration (automatic app installation into Teams, user
+          account linking) and to a React presence-synchronisation frontend. Maintained the Zendesk integration
+          for making and tracking calls from support tickets.
+        extra: true
+  - company: Blend360
+    role: Senior Software Engineer Consultant
+    dates: Nov 2022 to May 2023
+    stack: >-
+      TypeScript, React, Next.js, Flask, PostgreSQL, PyTorch, CUDA, Docker, nginx, uWSGI, AWS CDK/Lambda
+    bullets:
+      - text: >-
+          Sole primary engineer on a full-stack marketing campaign-measurement application (372 of 392
+          commits): React and TypeScript frontend, Flask REST API, PostgreSQL schema, and the analyst-facing
+          interface for three causal-inference report types covering synthetic-control comparisons, covariate
+          balance, and per-region weights.
+      - text: >-
+          Built the GPU inference service behind it (Flask, uWSGI, PyTorch, HuggingFace Transformers on
+          an NVIDIA DGX system): one model pipeline per detected CUDA device, requests routed to the first
+          free device, HTTP 503 when all were saturated. Diagnosed CUDA failing to initialise under uWSGI's
+          pre-fork worker model and fixed it by deferring model loading into a post-fork hook.
+      - text: >-
+          Designed that application's report-request pipeline: JSON-Schema-validated intake, a single
+          transaction writing the request and its parameters, dispatch to an external modelling service,
+          and rollback on either a database error or a failed dispatch, so a failed run never left orphaned
+          rows behind.
+        extra: true
+      - text: >-
+          Shipped features to a Next.js news-analytics product on AWS Lambda@Edge, and wrote a standalone
+          AWS CDK application that codified a hand-built account as infrastructure as code (VPC, public
+          and private subnets across four availability zones, NAT gateways, route tables, DynamoDB), correcting
+          a routing defect in which the NAT gateways sat on private subnets.
+        extra: true
+  - company: The Walt Disney Company
+    role: Senior Software Engineer
+    dates: July 2019 to April 2020
+    bullets:
+      - text: >-
+          Delivered the ground-up overhaul of the same forecasting platform, over 1,500 commits. Wrote
+          nearly all of the test suite, taking coverage from a low baseline to above 95% across frontend
+          and backend, and completed the backend type annotations to make static analysis viable.
+      - text: >-
+          Architected the reporting application, added the GitLab CI hooks for QA and coverage reporting,
+          and managed the nginx configuration used to host the site.
+        extra: true
+    note: >-
+      This contract ended because of cutbacks due to the Coronavirus pandemic. I was invited back in
+      2023.
+    note_extra: true
+  - company: Critical Mix
+    role: Senior Software Engineer
+    dates: Aug 2018 to April 2019
+    stack: Python, asyncio, Oracle, AWS Lambda, mypy, pytest
+    bullets:
+      - text: >-
+          Built an asyncio Python service synchronising survey panelist records between an Oracle data
+          warehouse and a third-party sample-exchange API, deployed to AWS Lambda, fully type-annotated
+          and tested.
+earlier:
+  heading: Selected earlier roles
+  compact:
+    - <strong>Surge Forward</strong>, contract developer, Dec 2016 to July 2018.
+    - <strong>Engne</strong>, Senior Web Developer, Oct 2014 to Dec 2015.
+    - >-
+      <strong>DriverSide</strong> (Advance Auto Parts), San Francisco, CA, Sept 2014 to Dec 2015.
+    - >-
+      <strong>AppDynamics</strong>, San Francisco, CA. Senior Web Developer, Oct 2013 to Aug 2014.
+    - >-
+      <strong>CBS Interactive</strong>, San Francisco, CA. Software Engineer, June 2012 to Oct 2013.
+  full:
+    - company: Surge Forward
+      role: Contract developer
+      dates: Dec 2016 to July 2018
+      stack: Ansible, VMware vSphere, Python, iOS, PHP, Laravel, AWS IAM
+      bullets:
+        - text: >-
+            Set up automated deployment of virtual machines to VMware vSphere with Ansible, backed by
+            supporting Python tooling, for an enterprise client.
+        - text: >-
+            Built a Python framework that let a university control AWS IAM permissions dynamically rather
+            than through static hand-maintained policy.
+        - text: >-
+            Fixed and shipped updates to an iOS application and maintained its PHP and Laravel backend.
+          extra: true
+    - company: Engne
+      role: Senior Web Developer
+      dates: Oct 2014 to Dec 2015
+      stack: PHP, Laravel, MySQL, Redis, AWS S3, JWT, Swift, Core Data, RestKit, CocoaPods
+      bullets:
+        - text: >-
+            Principal author of the REST API and data pipeline behind a consumer vehicle-comparison iPad
+            application (280 of 327 commits): catalogue and vehicle-detail endpoints, JWT auth, and comparison
+            endpoints locating competing vehicles in the same market class via correlated subqueries.
+            Led the Laravel 4.2 to 5.0 port as sole author, a 284-file changeset.
+        - text: >-
+            On the companion Swift iOS client (242 commits), authored roughly 90% of the networking layer:
+            migrated it off hand-rolled JSON models onto RestKit backed by Core Data, and designed the
+            twelve-entity schema so server-side soft deletes propagated to the local store on the next
+            sync.
+        - text: >-
+            Built a self-describing client for a US government vehicle-data web service that parses the
+            service's WADL at runtime to construct its own method surface, then walks the published XSD
+            to coerce loosely typed JSON back to correct scalar types.
+          extra: true
+        - text: >-
+            Designed the vehicle image pipeline: a content-addressed S3 layout whose keys derive from
+            a hash over dimensions, display scale, and basename, making re-runs idempotent, plus server-side
+            HiDPI negotiation selecting @1x or @2x variants from the client's display scale.
+          extra: true
+    - company: DriverSide
+      role: Advance Auto Parts
+      dates: Sept 2014 to Dec 2015
+      stack: PHP, Symfony, MySQL, Ansible, nginx
+      bullets:
+        - text: >-
+            Built the authentication bridge that let a legacy application and the new Symfony application
+            share sessions, with cookie hash verification and IP and user-agent validation.
+        - text: Wrote the Ansible provisioning for the environment, covering nginx and the asset pipeline.
+    - company: AppDynamics
+      role: Senior Web Developer
+      dates: Oct 2013 to Aug 2014
+      stack: Ansible, Vagrant, Jenkins, nginx, PHP-FPM, WordPress, Percona MySQL, AWS S3/RDS
+      bullets:
+        - text: >-
+            Largest contributor to the provisioning codebase behind the company's public web properties
+            (496 of 1,070 commits), an Ansible role set covering the corporate site, database, web server,
+            and CI hosts across local, QA, and production environments.
+        - text: >-
+            Gave the team reproducible local environments with Vagrant and wired the Jenkins deployment
+            path, replacing hand-configured servers with roles under version control.
+    - company: CBS Interactive
+      role: Software Engineer
+      dates: June 2012 to Oct 2013
+      stack: Symfony, PHP, Django, Elasticsearch, Sphinx
+      bullets:
+        - text: >-
+            Principal contributor to the port of Giant Bomb and Comic Vine from Django to Symfony, including
+            migrating the data across the two stacks.
+        - text: >-
+            Later did the same for GameSpot, moving it off a bespoke PHP 4 era framework built on Zend
+            and onto Symfony, again including the data migration.
+        - text: Rebuilt search across these properties, working with Elasticsearch and Sphinx.
+skills:
+  - label: AI
+    value: Claude, GitHub Copilot, Amazon Q, Cursor, MCP servers
+  - label: Languages
+    value: Python, TypeScript, JavaScript, C, C++, Objective-C, Swift, PHP, SQL, Shell, Jsonnet, Lua
+  - label: Frameworks
+    value: Django, DRF, Django Ninja, FastAPI, Flask, React, Next.js, Laravel, Symfony, Qt
+  - label: Data and search
+    value: Snowflake, PostgreSQL, MySQL, Oracle, Redis/ElastiCache, Elasticsearch, Sphinx
+  - label: Cloud and infrastructure
+    value: >-
+      AWS (Lambda, S3, RDS, CloudFront, CloudWatch, Parameter Store, SES, IAM, CDK), Docker, Ansible,
+      VMware vSphere, Vagrant
+  - label: Tooling
+    value: >-
+      GitLab CI/CD, GitHub Actions, Jenkins, Datadog APM and RUM, mypy, pytest, Vite/Vitest, Linux,
+      Git
+open_source:
+  intro: >-
+    <a href="https://github.com/Tatsh" rel="noopener" target="_blank">github.com/Tatsh</a>: 84 active
+    projects and 314 merged pull requests upstream, including 137 to MacPorts and stub improvements
+    to Python typeshed and django-stubs.
+  projects:
+    - text: >-
+        <a class="proj-name" href="https://github.com/Tatsh/wiswa" rel="noopener" target="_blank">Wiswa</a>
+        (Python): generates and <em>maintains</em> projects from Jsonnet manifests, so one settings
+        change re-renders CI config, linting, docs, and packaging across every project using it. In
+        use at Disney and across nearly all of my own open-source projects.
+    - text: >-
+        <a class="proj-name" href="https://github.com/Tatsh/youtube-unofficial" rel="noopener" target="_blank">youtube-unofficial</a>
+        (Python, ⭐ 56): maintained continuously since 2016, fully typed, with thirteen CI workflows
+        publishing to PyPI, AppImage, Flatpak, and Snap.
+    - text: >-
+        <a class="proj-name" href="https://github.com/Tatsh/macprefs" rel="noopener" target="_blank">macprefs</a>
+        (Python, ⭐ 43): exports and restores macOS preferences as version-controllable files.
+    - text: >-
+        <a class="proj-name" href="https://github.com/Tatsh/dbeaver-creds" rel="noopener" target="_blank">dbeaver-creds</a>
+        (C, ⭐ 33): recovers saved DBeaver database credentials. One AES-128-CBC entry point behind a
+        configure-time backend abstraction with three implementations (OpenSSL EVP, Windows CNG BCrypt,
+        Apple CommonCrypto), tested with cmocka via <code>--wrap</code> symbol interposition, and <a
+        href="https://pypi.org/project/dbeaver-creds/" rel="noopener" target="_blank">shipped as a CPython
+        extension</a> in 48 wheels across eight platform tags.
+    - text: >-
+        <a class="proj-name" href="https://github.com/Tatsh/bpmdetect" rel="noopener" target="_blank">bpmdetect</a>
+        (C++, ⭐ 14): automatic beats-per-minute detection for audio files.
+upstream:
+  extra: true
+  items:
+    - >-
+      <a class="up-name" href="https://github.com/macports/macports-ports" rel="noopener" target="_blank">MacPorts</a>:
+      137 merged PRs to <code>macports-ports</code>.
+    - >-
+      <a class="up-name" href="https://github.com/python/typeshed" rel="noopener" target="_blank">Python
+      typeshed</a>, <a class="up-name" href="https://github.com/typeddjango/django-stubs" rel="noopener"
+      target="_blank">django-stubs</a>, and the <a class="up-name" href="https://github.com/typeshed-internal/stub_uploader"
+      rel="noopener" target="_blank">typeshed stub uploader</a>: type-stub improvements used by every
+      mypy user.
+    - >-
+      <a class="up-name" href="https://github.com/jazzband/django-silk" rel="noopener" target="_blank">django-silk</a>,
+      <a class="up-name" href="https://github.com/eadwinCode/django-ninja-extra" rel="noopener" target="_blank">django-ninja-extra</a>,
+      <a class="up-name" href="https://github.com/jawah/niquests" rel="noopener" target="_blank">niquests</a>,
+      <a class="up-name" href="https://github.com/newrelic/newrelic-python-agent" rel="noopener" target="_blank">New
+      Relic Python agent</a>: library and observability fixes.
+    - >-
+      <a class="up-name" href="https://github.com/msys2/MINGW-packages" rel="noopener" target="_blank">MSYS2</a>,
+      <a class="up-name" href="https://github.com/microsoft/winget-pkgs" rel="noopener" target="_blank">winget-pkgs</a>,
+      <a class="up-name" href="https://github.com/gentoo/gentoo" rel="noopener" target="_blank">Gentoo</a>,
+      <a class="up-name" href="https://github.com/slimm609/checksec" rel="noopener" target="_blank">checksec</a>:
+      packaging across three platforms.
+    - >-
+      <a class="up-name" href="https://github.com/quassel/quassel" rel="noopener" target="_blank">Quassel</a>,
+      <a class="up-name" href="https://github.com/hrydgard/ppsspp" rel="noopener" target="_blank">PPSSPP</a>,
+      <a class="up-name" href="https://github.com/stepmania/stepmania" rel="noopener" target="_blank">StepMania</a>,
+      <a class="up-name" href="https://github.com/symfony/symfony" rel="noopener" target="_blank">Symfony</a>:
+      long-running C++ and PHP contributions.

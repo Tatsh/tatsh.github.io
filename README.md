@@ -19,4 +19,20 @@
 
 <!-- WISWA-GENERATED-README:STOP -->
 
-Nothing here yet.
+## Résumé
+
+[Read my résumé](https://tatsh.github.io/). Use the toolbar to switch between one and two
+columns, widen it to the window, or adjust the text size, and print or save it as a single-page PDF
+on either US letter or A4.
+
+The page is built by Jekyll from source in this repository:
+
+| Path                   | Holds                                                          |
+| ---------------------- | -------------------------------------------------------------- |
+| `_data/resume.yml`     | All content. Edit a role or bullet here and nowhere else.      |
+| `_layouts/resume.html` | Page structure.                                                |
+| `_includes/job.html`   | One role entry, rendered once per job in the data file.        |
+| `_sass/_resume.scss`   | Styles, including the print rules that keep the PDF to a page. |
+| `assets/js/resume.js`  | Toolbar, text size, and the expandable earlier-roles section.  |
+
+Bullets marked `extra: true` appear on the web page but are dropped from the printed sheet.

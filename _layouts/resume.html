@@ -1,0 +1,168 @@
+{%- assign r = site.data.resume -%}
+<!doctype html>
+<html lang="{{ site.lang | default: 'en-GB' }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ page.description }}" />
+    <title>{{ page.title }}</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%2316324f'/><text x='16' y='22' font-family='sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'>AU</text></svg>"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="{{ '/fonts/source-sans-3-latin-normal.woff2' | relative_url }}"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <!-- Icons for the on-screen controls only. These never print, so if this
+         fails to load the page is unaffected apart from bare buttons. -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+      rel="stylesheet"
+      integrity="sha384-qrALq7+6jBOZIQsNnT6xGkMDru64qD6uTlDra39xrt2SoXl4pO3FX6Roz/RpR/BS"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{{ '/assets/css/resume.css' | relative_url }}" />
+  </head>
+
+  <body>
+    {% include help-dialog.html %}
+
+    <div class="container resume p-0">
+      {% include toolbar.html %}
+
+      <!-- Masthead: name left, contact right. -->
+      <header
+        class="masthead d-flex flex-column flex-sm-row justify-content-between align-items-sm-end"
+      >
+        <div>
+          <div class="name">{{ r.name }}</div>
+          <div class="tagline">{{ r.tagline }}</div>
+        </div>
+        <ul class="contact list-unstyled mb-0 mt-2 mt-sm-0 text-sm-end">
+          {%- for item in r.contact %}
+          <li>
+            {%- assign scheme = item.href | slice: 0, 4 -%} {%- if scheme == 'http' -%}
+            <a href="{{ item.href }}" target="_blank" rel="noopener">{{ item.text }}</a>
+            {%- elsif item.href -%}
+            <a href="{{ item.href }}">{{ item.text }}</a>
+            {%- else -%} {{ item.text }} {%- endif -%}
+          </li>
+          {%- endfor %}
+        </ul>
+      </header>
+
+      <div class="body-pad">
+        <div id="layout" class="row g-4 mt-0">
+          <main id="col-main" class="col-md-8">
+            <section class="mb-3">
+              <h2 class="sec-title">Summary</h2>
+              <p class="mb-0">{{ r.summary }}</p>
+            </section>
+
+            <section>
+              <h2 class="sec-title">Experience</h2>
+              {%- for item in r.experience %} {% include job.html job=item %} {%- endfor %}
+            </section>
+
+            <section class="mt-3" id="earlier">
+              <div class="earlier-head d-flex align-items-center gap-2">
+                <h2 class="sec-title flex-grow-1 mb-0" id="earlier-title">
+                  {{ r.earlier.heading }}
+                </h2>
+                <button
+                  type="button"
+                  id="earlier-toggle"
+                  class="expand-btn d-print-none"
+                  aria-expanded="false"
+                  aria-controls="earlier-full-wrap"
+                >
+                  <span aria-hidden="true" id="earlier-toggle-sign">+</span>
+                  <span class="visually-hidden" id="earlier-toggle-label">
+                    Expand earlier roles into full entries
+                  </span>
+                </button>
+              </div>
+
+              <div class="collapsible is-open" id="earlier-compact-wrap">
+                <div class="collapsible-inner">
+                  <ul class="earlier" id="earlier-compact">
+                    {%- for item in r.earlier.compact %}
+                    <li>{{ item }}</li>
+                    {%- endfor %}
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Expanded form: these read as a continuation of Experience, so
+                   the section heading is hidden while this is showing. Always
+                   dropped from the printed sheet, which uses the list above. -->
+              <div class="collapsible extra" id="earlier-full-wrap">
+                <div class="collapsible-inner">
+                  <div id="earlier-full">
+                    {%- for item in r.earlier.full %} {% include job.html job=item %} {%- endfor %}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="mt-3" id="doc-meta">
+              <p class="doc-meta mb-0">
+                Version {{ r.version }} &middot; last updated
+                <time datetime="{{ site.time | date: '%Y-%m-%d' }}"
+                  >{{ site.time | date: '%-d %B %Y' }}</time
+                >
+              </p>
+            </section>
+          </main>
+
+          <aside id="col-side" class="col-md-4 sidebar">
+            <section>
+              <h2 class="sec-title">Skills</h2>
+              {%- for group in r.skills %}
+              <div class="skill-label">{{ group.label }}</div>
+              <div class="skill-value">{{ group.value }}</div>
+              {%- endfor %}
+            </section>
+
+            <section class="mt-3">
+              <h2 class="sec-title">Open source</h2>
+              <p class="stack">{{ r.open_source.intro }}</p>
+              <ul>
+                {%- for project in r.open_source.projects %}
+                <li class="{% if project.extra %}extra{% endif %}">{{ project.text }}</li>
+                {%- endfor %}
+              </ul>
+            </section>
+
+            <section class="mt-3{% if r.upstream.extra %} extra{% endif %}">
+              <h2 class="sec-title">Upstream</h2>
+              <ul>
+                {%- for item in r.upstream.items %}
+                <li>{{ item }}</li>
+                {%- endfor %}
+              </ul>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{ '/assets/js/resume.js' | relative_url }}"></script>
+  </body>
+</html>

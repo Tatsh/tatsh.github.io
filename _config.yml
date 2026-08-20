@@ -1,3 +1,9 @@
 exclude:
   - 'CHANGELOG.md'
+  - 'node_modules'
+  - 'package.json'
+  - 'yarn.lock'
+sass:
+  sass_dir: '_sass'
+  style: 'compressed'
 theme: 'jekyll-theme-hacker'

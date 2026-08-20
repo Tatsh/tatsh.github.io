@@ -1,0 +1,703 @@
+/* No size is declared, so the sheet follows whatever the print dialog
+   selects. The layout is sized to survive the worst of both: A4 is the
+   narrower paper, letter is the shorter one. 0.25in is about as tight as
+   consumer laser printers will reliably image to. */
+@page {
+  margin: 0.25in;
+}
+
+/* Font paths are root-relative, which assumes the site is served from the
+   domain root as a GitHub user site. If this ever moves under a baseurl,
+   these four url() paths are the only thing that needs a prefix.
+
+   Source Sans 3, vendored under the SIL Open Font License (see
+   fonts/OFL.txt) rather than loaded from a CDN, so the page renders
+   identically offline and leaks no viewer IPs to a third party. These are
+   variable-weight files covering 400 to 700 in one face each, and the
+   unicode-range split means latin-ext is only fetched if a document
+   actually uses those characters. */
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/source-sans-3-latin-normal.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/source-sans-3-latin-ext-normal.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/source-sans-3-latin-italic.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/source-sans-3-latin-ext-italic.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+/* Source Sans 3 sets about 18% narrower than Arial/Helvetica at the same
+   size, so if the vendored files ever fail to load the sheet would spill
+   onto a second page. This metric-matched face scales the local fallback
+   to occupy the same width, keeping the one-page layout correct. */
+@font-face {
+  font-family: 'Source Sans Fallback';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans'), local('DejaVu Sans');
+  size-adjust: 82%;
+  ascent-override: 120%;
+  descent-override: 33%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --navy: #16324f;
+  --navy-deep: #0e2338;
+  --accent: #2f6690;
+  --accent-soft: #e7eef5;
+  --rule: #d3dae3;
+  --ink: #1a1d23;
+  --muted: #56606e;
+  --panel: #f2f5f9;
+
+  /* Source Sans 3 throughout. Its moderate x-height keeps more words per
+     line than Inter or Open Sans at the same size, which is what buys the
+     printed sheet a full point of type over a wider family. */
+  --font-body: 'Source Sans 3', 'Source Sans Fallback', 'Helvetica Neue', Arial, sans-serif;
+  --font-head: var(--font-body);
+}
+
+/* Driven by the text-size controls. Deliberately a custom property rather
+   than an inline style on <html>: an inline style would outrank the print
+   rule below and silently resize the PDF. */
+html {
+  font-size: var(--screen-font-size, 15px);
+}
+
+body {
+  font-family: var(--font-body);
+  font-optical-sizing: auto;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.name,
+.tagline,
+.sec-title,
+.skill-label,
+.dates,
+.job-title,
+.contact {
+  font-family: var(--font-head);
+}
+
+.resume {
+  max-width: 8.5in;
+  background: #fff;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* ---------- Masthead band ---------- */
+
+.masthead {
+  background: var(--navy);
+  color: #fff;
+  padding: 1.1rem 1.3rem;
+}
+
+.masthead a {
+  color: #cfe0ef;
+  text-decoration: none;
+}
+
+.name {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  line-height: 1;
+  color: #fff;
+}
+
+.tagline {
+  color: #a9c3d9;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+.contact {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #cfe0ef;
+}
+
+.body-pad {
+  padding: 1rem 1.3rem 1.3rem;
+}
+
+/* ---------- Section headings ---------- */
+
+.sec-title {
+  position: relative;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 0 0.2rem 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Accent tab at the start of every section heading. */
+.sec-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  bottom: 0.35rem;
+  width: 3px;
+  background: var(--accent);
+}
+
+/* ---------- Jobs ---------- */
+
+.job {
+  margin-bottom: 0.8rem;
+  padding-left: 0.6rem;
+  border-left: 2px solid var(--accent-soft);
+}
+
+.job-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.job-title .role {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.dates {
+  font-size: 0.8rem;
+  color: var(--navy);
+  white-space: nowrap;
+  background: var(--accent-soft);
+  border-radius: 2px;
+  padding: 0.05rem 0.4rem;
+}
+
+.stack {
+  font-size: 0.83rem;
+  color: var(--muted);
+  margin: 0.2rem 0 0.3rem;
+  font-style: italic;
+}
+
+.job ul,
+.earlier {
+  margin-bottom: 0;
+  padding-left: 1.05rem;
+}
+
+.job li,
+.earlier li,
+.sidebar li {
+  margin-bottom: 0.22rem;
+}
+
+.job li::marker,
+.sidebar li::marker {
+  color: var(--accent);
+}
+
+.note {
+  font-size: 0.86rem;
+  color: var(--muted);
+  font-style: italic;
+  margin: 0.35rem 0 0;
+}
+
+/* ---------- Document footer ---------- */
+
+.doc-meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  padding-top: 0.3rem;
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+  background: var(--panel);
+  border-top: 3px solid var(--accent);
+  padding: 0.8rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+.sidebar ul {
+  padding-left: 1rem;
+  margin-bottom: 0;
+}
+
+.skill-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.08rem;
+}
+
+.skill-value {
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.skill-value:last-of-type {
+  border-bottom: none;
+}
+
+.proj-name,
+.up-name {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* ---------- Toolbar ---------- */
+
+/* Padding and gap in pixels rather than Bootstrap's rem-based p-2/gap-1:
+   the text-size control resizes the resume, and the chrome around it must
+   hold still. touch-action suppresses the browser's double-tap-to-zoom so
+   the triple-tap reset is not fighting a page zoom gesture. */
+.toolbar {
+  padding: 8px;
+  gap: 4px;
+  touch-action: manipulation;
+}
+
+/* ---------- Help overlay ---------- */
+
+/* A native dialog, so Escape, the focus trap, and the backdrop come for
+   free rather than from a component library. */
+/* Sized in pixels throughout, for the same reason as the toolbar: the
+   text-size control belongs to the resume, not to the page chrome. */
+#help-dialog {
+  max-width: 480px;
+  border: none;
+  border-radius: 6px;
+  padding: 18px 21px 16px;
+  font-size: 14px;
+  color: var(--ink);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* A dialog toggles display, which is not animatable on its own. Listing
+   display and overlay as allow-discrete keeps the element painted for the
+   duration, and @starting-style supplies the frame to animate from. */
+#help-dialog,
+#help-dialog::backdrop {
+  transition:
+    opacity 240ms ease,
+    transform 240ms ease,
+    overlay 240ms ease allow-discrete,
+    display 240ms ease allow-discrete;
+}
+
+#help-dialog {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+}
+
+#help-dialog[open] {
+  opacity: 1;
+  transform: none;
+}
+
+#help-dialog::backdrop {
+  background: rgba(14, 35, 56, 0);
+}
+
+#help-dialog[open]::backdrop {
+  background: rgba(14, 35, 56, 0.45);
+}
+
+@starting-style {
+  #help-dialog[open] {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  #help-dialog[open]::backdrop {
+    background: rgba(14, 35, 56, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #help-dialog,
+  #help-dialog::backdrop {
+    transition: none;
+  }
+
+  #help-dialog {
+    transform: none;
+  }
+}
+
+#help-dialog h2 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 5px;
+  margin-bottom: 11px;
+}
+
+#help-dialog dl {
+  margin: 0 0 14px;
+}
+
+#help-dialog dt {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+#help-dialog dd {
+  margin: 0 0 8px;
+  color: var(--muted);
+}
+
+#help-dialog .btn {
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 4px 9px;
+  border-radius: 4px;
+}
+
+#help-dialog kbd {
+  font-size: 0.82em;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  background: var(--navy);
+  color: #fff;
+}
+
+/* Pinned in pixels rather than rem so the text-size control resizes the
+   resume only, leaving its own buttons a fixed target. */
+.toolbar .btn {
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 4px 9px;
+  border-radius: 4px;
+}
+
+.toolbar .btn i {
+  width: 1em;
+}
+
+/* ---------- Earlier roles, expandable ---------- */
+
+.expand-btn {
+  flex: 0 0 auto;
+  width: 1.35rem;
+  height: 1.35rem;
+  line-height: 1;
+  padding: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.expand-btn:hover,
+.expand-btn:focus-visible {
+  color: #fff;
+  background: var(--accent);
+}
+
+/* Height animation without measuring anything in JS: a grid row animates
+   between 0fr and 1fr, which resolves to the content's natural height at
+   each end. The inner element clips while the row is shorter than it. */
+/* Swapped instantly, not animated. Both panels change the document height
+   as they move, so any transition shows two partial lists at once and
+   reads as the section moving the wrong way. The grid row is kept purely
+   as the show/hide mechanism: unlike the hidden attribute it is a plain
+   style, so the print rules can override it without fighting the DOM. */
+.collapsible {
+  display: grid;
+  grid-template-rows: 0fr;
+}
+
+.collapsible.is-open {
+  grid-template-rows: 1fr;
+}
+
+.collapsible-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Expanded: the heading gives way so the entries read as a continuation
+   of Experience, leaving just the collapse control on the right. */
+#earlier.is-expanded #earlier-title {
+  visibility: hidden;
+}
+
+#earlier.is-expanded .earlier-head {
+  margin-bottom: -0.35rem;
+}
+
+@media screen {
+  body {
+    background: #e6e9ee;
+  }
+
+  /* An even 12px frame all round. Deliberately px rather than rem so the
+     text-size control resizes the content, not the gap around it. */
+  .resume {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.14);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 12px auto;
+  }
+
+  /* Landscape mode: drop the sheet-width cap so the whole resume can be
+     read at once on a wide display. Two class selectors, so this beats
+     Bootstrap's .container breakpoint max-widths without !important.
+     width:auto matters: .container is width:100%, so side margins alone
+     would push the right edge off screen and only the left gap would show. */
+  .resume.is-wide {
+    max-width: none;
+    width: auto;
+    margin: 12px;
+  }
+
+  /* Phone: go edge to edge. A 12px frame on a 390px screen is just lost
+     width, and the rounded corners read as a stray card. */
+  @media (max-width: 575.98px) {
+    .resume,
+    .resume.is-wide {
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+}
+
+/* Single-column mode: the sidebar becomes a band, not a rail. */
+.layout-single .sidebar {
+  margin-top: 1rem;
+}
+
+/* Scoped to screen: the print sheet decides its own layout below, so this
+   must not apply there.  The md breakpoint (768px) is chosen so tablets
+   in portrait, iPad Air at 820px included, get the two-column view
+   and decides its own layout below. */
+@media screen and (max-width: 767.98px) {
+  .sidebar {
+    margin-top: 1rem;
+  }
+}
+
+@media print {
+  /* The printed sheet is a deliberately condensed one-pager. Everything
+     marked .extra stays on the web page and is dropped here: measurement
+     showed content volume, not type size, decides the page count. */
+  .extra,
+  .d-print-none {
+    display: none !important;
+  }
+
+  /* The compact list always prints, even when the reader left the section
+     expanded on screen. The grid collapse is a screen affordance, so the
+     wrapper is flattened back to normal flow and unclipped here. */
+  #earlier-compact-wrap {
+    display: block !important;
+  }
+
+  #earlier-compact-wrap .collapsible-inner {
+    overflow: visible;
+  }
+
+  /* Measured ceiling for a single sheet is 9.4pt, set by A4: it is the
+     narrower paper, so lines wrap sooner there than on letter. 9.25pt
+     leaves headroom for machines that cannot load the web font and fall
+     back to Arial or Helvetica metrics. Marked important so the on-screen
+     text-size control can never leak into the PDF. */
+  html {
+    font-size: 9.25pt !important;
+  }
+
+  /* Landscape mode is a screen affordance; the sheet decides its own width. */
+  .resume.is-wide {
+    max-width: none;
+    margin: 0;
+  }
+
+  body {
+    background: #fff;
+    line-height: 1.18;
+  }
+
+  .resume {
+    max-width: none;
+    padding: 0 !important;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  a {
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  /* Force the fills through even when "Background graphics" is off in the
+     Chrome print dialog. Without this the masthead prints as white on
+     white and the name disappears. */
+  .masthead,
+  .sidebar,
+  .dates,
+  .sec-title::before,
+  .job {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .masthead {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .body-pad {
+    padding: 0.45rem 0.6rem 0.5rem;
+  }
+
+  .tagline {
+    margin-top: 0.1rem;
+  }
+
+  /* Bootstrap's spacing utilities are sized for the screen. Rein them in
+     so the decoration above does not cost a second sheet. */
+  .mt-3,
+  .mb-3 {
+    margin-top: 0.45rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+
+  .sidebar {
+    padding: 0.45rem 0 0;
+    border-top-width: 2px;
+  }
+
+  .skill-value {
+    margin-bottom: 0.22rem;
+    padding-bottom: 0.22rem;
+  }
+
+  .job {
+    margin-bottom: 0.35rem;
+    padding-left: 0.45rem;
+  }
+
+  /* Two balanced text columns pack roughly a third more onto the sheet
+     than a single column at the same size. */
+  /* Bootstrap's .row carries negative side margins and a gutter variable.
+     Left alone they push content outside the printable box and the edges
+     get clipped by the printer, which a page count will not reveal. */
+  #layout {
+    display: block !important;
+    columns: 2;
+    column-gap: 0.2in;
+    margin: 0.35rem 0 0 !important;
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+  }
+
+  #col-main,
+  #col-side {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  #col-side {
+    background: transparent;
+    border-left: none;
+    border-top: 1px solid #c9cdd6;
+    margin-top: 0.4rem;
+    padding: 0.3rem 0 0 !important;
+  }
+
+  .name {
+    font-size: 1.55rem;
+  }
+
+  .job {
+    margin-bottom: 0.4rem;
+    break-inside: avoid;
+  }
+
+  .job li,
+  .earlier li,
+  .sidebar li {
+    margin-bottom: 0.05rem;
+  }
+
+  .sec-title {
+    margin-bottom: 0.2rem;
+    break-after: avoid;
+  }
+
+  .job-title {
+    font-size: 1rem;
+    break-after: avoid;
+  }
+
+  .stack {
+    margin: 0.05rem 0 0.15rem;
+  }
+
+  /* Deliberately NOT break-inside: avoid on section. Inside a multicol
+     context an unbreakable 600px block gets pushed whole to the next
+     column, which strands most of a column and forces a second sheet. */
+  section {
+    break-inside: auto;
+  }
+}

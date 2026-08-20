@@ -30,6 +30,8 @@
 /.yarn/install-state.gz
 /.zprofile
 /.zshrc
+/_includes/
+/_layouts/
 /build/
 /dist/
 node_modules/
