@@ -1,4 +1,3 @@
-Ångström
 asyncio
 bpmdetect
 bsky
@@ -6,7 +5,6 @@ buymeacoffee
 checksec
 cmocka
 commitizen
-cooldown
 coveragerc
 creds
 cuda
@@ -29,7 +27,9 @@ mktemp
 msys
 mypy
 niquests
+noone
 noopener
+numpydoc
 oneline
 panelist
 pkgs
@@ -63,8 +63,8 @@ wadl
 winget
 wiswa
 wiswa's
-worktree
 wsgi
 wsgi's
 yarnrc
 zizmor
+Ångström
