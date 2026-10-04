@@ -3,6 +3,7 @@ concurrency:
   group: 'pages'
 jobs:
   build:
+    name: 'Build'
     runs-on: 'ubuntu-latest'
     steps:
       - uses: 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1'
@@ -21,6 +22,7 @@ jobs:
     environment:
       name: 'github-pages'
       url: '${{ steps.deployment.outputs.page_url }}'
+    name: 'Deploy'
     needs: 'build'
     permissions:
       id-token: 'write'
