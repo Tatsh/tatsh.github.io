@@ -43,6 +43,7 @@ quassel
 regen
 ripgreprc
 sass
+sbclaude
 schemafile
 shellcheck
 shellformat
