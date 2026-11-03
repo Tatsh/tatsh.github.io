@@ -2,7 +2,7 @@
   uses_user_defaults: true,
   project_type: 'other',
   want_tests: false,
-  want_codeql: false,
+  want_codeql: true,
   want_claude: false,
   want_cursor: false,
   project_name: 'Tatsh',
@@ -24,6 +24,11 @@
   prettierignore+: ['/_includes/', '/_layouts/'],
   // Sponsorship links shown in the repository's Sponsor button.
   github+: {
+    codeql+: {
+      languages: ['javascript-typescript', 'actions'],
+      runs_on: 'ubuntu-latest',
+      workflow_file: 'codeql.yml',
+    },
     funding+: {
       ko_fi: 'tatsh2',
       liberapay: 'tatsh2',
