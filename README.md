@@ -4,7 +4,7 @@
 
 [![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Tatsh/tatsh.github.io)](https://github.com/Tatsh/tatsh.github.io/tags)
 [![License](https://img.shields.io/github/license/Tatsh/tatsh.github.io)](https://github.com/Tatsh/tatsh.github.io/blob/master/LICENSE.txt)
-[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/tatsh.github.io/v0.0.2/master)](https://github.com/Tatsh/tatsh.github.io/compare/v0.0.2...master)
+[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/tatsh.github.io/v0.0.3/master)](https://github.com/Tatsh/tatsh.github.io/compare/v0.0.3...master)
 [![Dependabot](https://img.shields.io/badge/Dependabot-enabled-blue?logo=dependabot)](https://github.com/dependabot)
 [![Stargazers](https://img.shields.io/github/stars/Tatsh/tatsh.github.io?logo=github&style=flat)](https://github.com/Tatsh/tatsh.github.io/stargazers)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Tatsh/tatsh.github.io/master.svg)](https://results.pre-commit.ci/latest/github/Tatsh/tatsh.github.io/master)

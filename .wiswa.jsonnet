@@ -9,7 +9,7 @@
   // The repository name differs from the project name. It is the GitHub Pages user site, so the
   // generated repository URLs and the Pages URI both derive from this.
   github_project_name: 'tatsh.github.io',
-  version: '0.0.2',
+  version: '0.0.3',
   description: 'Profile project.',
   keywords: ['github', 'profile', 'tatsh'],
   want_main: false,
