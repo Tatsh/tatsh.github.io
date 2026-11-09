@@ -28,8 +28,9 @@ experience:
           roughly 2,100 of 8,300 commits on the core service.
       - text: >-
           Drove AI-assisted development: authored the agent instruction and skill files that ship with
-          the project template, so every repository inherits them, and built MCP servers exposing internal
-          tooling to coding agents. Worked daily using Claude Opus.
+          the project template, so every repository inherits them, and wrote the playbook skill for migrating
+          services from DRF to Django Ninja Extra. Worked daily using Claude Opus, validating generated
+          code against strict mypy and coverage thresholds.
       - text: >-
           Led the migration of the forecasting data layer from PostgreSQL to Snowflake: key-pair authentication,
           an identifier-casing migration behind a backwards-compatible view layer for existing consumers,
@@ -127,12 +128,12 @@ experience:
   - company: Critical Mix
     role: Senior Software Engineer
     dates: Aug 2018 to April 2019
-    stack: Python, asyncio, Oracle, AWS Lambda, mypy, pytest
+    stack: Python, asyncio, aiohttp, Oracle, Docker, AWS Lambda, mypy, pytest, Bitbucket Pipelines
     bullets:
       - text: >-
           Built an asyncio Python service synchronising survey panelist records between an Oracle data
-          warehouse and a third-party sample-exchange API, deployed to AWS Lambda, fully type-annotated
-          and tested.
+          warehouse and a third-party sample-exchange API, running in Docker and invoking AWS Lambda functions
+          through boto3. Type-checked under strict mypy, with 89% test coverage.
 earlier:
   heading: Selected earlier roles
   compact:

@@ -1,4 +1,6 @@
+aiohttp
 asyncio
+boto
 bpmdetect
 bsky
 buymeacoffee
