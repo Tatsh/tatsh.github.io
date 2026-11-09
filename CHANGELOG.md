@@ -9,10 +9,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.0.3] - 2026-11-09
+
+### Changed
+
+- The Disney role (September 2023 to September 2026) now shows an end date instead of _Present_.
+
 ### Fixed
 
-- The AI-assisted development bullet for the Disney role (Sept 2023 to present) now credits the
-  playbook skill for migrating services from DRF to Django Ninja Extra and the validation of
+- The AI-assisted development bullet for the Disney role (September 2023 to September 2026) credits
+  the playbook skill for migrating services from DRF to Django Ninja Extra and validation of
   generated code against strict mypy and coverage thresholds, in place of building MCP servers.
 - The Critical Mix entry now describes the service as running in Docker and invoking AWS Lambda
   functions through boto3, rather than as deployed to AWS Lambda. The stack list gained aiohttp,

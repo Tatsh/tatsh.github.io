@@ -17,7 +17,7 @@ summary: >-
 experience:
   - company: The Walt Disney Company
     role: Senior Software Engineer
-    dates: Sept 2023 to Present
+    dates: Sept 2023 to Sept 2026
     stack: >-
       Python, Django, React, Next.js, TypeScript, Snowflake, PostgreSQL, Redis, Docker, AWS Lambda/S3,
       GitLab CI/CD, Datadog
